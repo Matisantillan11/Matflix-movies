@@ -1,0 +1,64 @@
+.header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header_logo {
+    
+    width: 350px;
+    height: 200px;
+}
+
+
+
+.menu {
+margin-right: 30px;
+align-items: center;
+justify-content: center;
+}
+.profile-conteiner {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+img {
+width: 50px;
+padding-left: 8px;
+padding-top: 2px;
+}
+p {
+padding-left: 18px;
+padding-top: 10px;
+font-size: 20px;
+color: #fbfbfb;
+}
+
+ul {
+
+display: none;
+list-style: none;
+padding: 0px 20px;
+margin: 0px 0px 0px -14px;
+position: absolute;
+
+}
+li a {
+font-size: 17px;
+color:#fbfbfb;
+margin: 10px 0px;
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+  
+  
+   
+.menu:hover ul,
+ul:hover {
+width: 150px;
+text-align: right;
+display: block;
+}

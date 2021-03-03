@@ -1,0 +1,22 @@
+.carousel{
+overflow:scroll;
+padding-left: 30px;
+width: 100%;
+position: relative;
+margin-bottom: 20px;
+}
+.carousel__container {
+white-space: nowrap;
+margin: 20px 0px;
+padding-bottom: 10px;
+}
+
+.carousel__container:hover .carousel-items {
+opacity: 0.3;
+}
+
+.carousel__container:hover .carousel-items:hover {
+-webkit-transform: scale(1.1);
+        transform: scale(1.1);
+opacity: 1;
+}

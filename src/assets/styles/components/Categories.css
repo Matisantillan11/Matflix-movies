@@ -1,0 +1,12 @@
+.categories{
+overflow: hidden;
+margin-bottom: 50px ;
+width: 100%;
+}
+.categories__title{
+    color: white;
+    font-size: 25px;
+    padding-top: 15px;
+    margin-left: 30px;
+    width: 100%;
+}

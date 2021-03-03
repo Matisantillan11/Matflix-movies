@@ -1,0 +1,26 @@
+
+.search_section {
+height: 200px;
+text-align: center;
+align-items: center;
+}
+.search__title{
+font-size: 30px;
+color: #fbfbfb;
+padding-top: 50px;
+padding-bottom: 25px;
+}
+.searcher {
+width: 70%;
+height: 40px;
+border: 1px solid #db7093;
+border-radius: 10px;
+background: transparent;
+padding: 0px 20px;
+color: #db7093;
+font-size: 20px;
+outline: none;
+}
+.searcher::placeholder {
+color: #db7093;
+}
