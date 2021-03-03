@@ -2,11 +2,14 @@
 overflow:scroll;
 padding-left: 30px;
 width: 100%;
+min-height: 100vh;
+display:flex;
+flex-wrap: wrap;
 position: relative;
 margin-bottom: 20px;
 }
 .carousel__container {
-white-space: nowrap;
+
 margin: 20px 0px;
 padding-bottom: 10px;
 }

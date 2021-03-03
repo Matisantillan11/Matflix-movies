@@ -11,27 +11,15 @@ function App() {
       <Header />
       <Search />
 
-      <Categories title="My personal list">
-        <Carousel>
-          <CarouselItem />
-          <CarouselItem />
-          <CarouselItem />
-        </Carousel>
+      <Categories title="Top Movies">
+        <Carousel />
       </Categories>
-      <Categories title="Top movies">
-        <Carousel>
-          <CarouselItem />
-          <CarouselItem />
-          <CarouselItem />
-        </Carousel>
+      {/* <Categories title="Top movies">
+        <Carousel />
       </Categories>
       <Categories title="Top Series">
-        <Carousel>
-          <CarouselItem />
-          <CarouselItem />
-          <CarouselItem />
-        </Carousel>
-      </Categories>
+        <Carousel />
+      </Categories> */}
 
       <Footer />
     </div>

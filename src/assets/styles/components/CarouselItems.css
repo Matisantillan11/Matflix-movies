@@ -11,7 +11,7 @@
     -webkit-transform-origin: center left;
     transform-origin: center left;
     position: relative;
-    
+    z-index: 1;
     
   }
   .carousel-item:hover ~ .carousel-items {
@@ -22,53 +22,64 @@
   .carousel-items:hover {
       transform: scale(1.1);
       opacity: 1;
-      z-index: 1;
+      
 
   }
   
   
   .carousel-item__image{
-    width: 250px;
+    border-radius: 20px;
+    min-width: 250px;
     height: 300px;
     object-fit: fill;
   }
   
   .carousel-item__description {
-    background: linear-gradient(rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    width: 250px;
+    height: 300px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.801) 85%, rgba(0, 0, 0, 0.5) 100%);
     font-size: 10px;
     opacity: 0;
     transition: 450ms opacity;
     padding: 10px;
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
 }
+
 .carousel-item__description img {
-    width: 20px;
-    height: 20px;
+    background: transparent;
+    width: 30px;
+    height: 25px;
 }
 
 
   .carousel-items:hover .carousel-item__description {
     opacity: 1;
     color:#fbfbfb;
+    
+  }
+
+  .carousel-item__description div{
+    background: transparent;
   }
   
   .carousel-item__description--title {
+    background: transparent;
     color: #fbfbfb;
-    margin: 5px 0px 0px 0px;
+    font-size: 15px;
+    margin: .5px 0px 0px -10px;
   }
   
   .carousel-item__description--subtitle {
+    background: transparent;
     color: #fbfbfb;
-    font-size: 8px;
+    font-size: 12px;
     margin: 3px 0px;
-  }
+  } 
   ::-webkit-scrollbar-corner {
     display: none;
     

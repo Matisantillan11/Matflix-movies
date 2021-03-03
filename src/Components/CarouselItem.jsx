@@ -5,9 +5,9 @@ import Add from '../assets/images/icons/plus.png'
 import Play from '../assets/images/icons/play.png'
 
 import '../assets/styles/components/CarouselItems.css'
-const CarouselItem = ({ cover, title, duration, time }) => (
+const CarouselItem = ({ poster, title, duration, time }) => (
     <div className="carousel-items">   
-        <img className="carousel-item__image" src={cover} alt={title} />
+        <img className="carousel-item__image" src={`https://image.tmdb.org/t/p/w500${poster}`} alt={title} />
         <div className="carousel-item__description">
             <div>
                 <img src={Play} alt="Reproducir" />
