@@ -12,8 +12,10 @@ class Carousel extends Component {
         }
     }
 
+    
+
     componentDidMount(){
-        this.fetchData(`https://api.themoviedb.org/3/movie/popular?api_key=${this.state.API_KEY}&language=en-US&page=1`)
+        this.fetchData(`https://api.themoviedb.org/3/${this.props.type}/popular?api_key=${this.state.API_KEY}&language=en-US&page=1`)
     }
 
     fetchData = async (url) => {
@@ -43,17 +45,21 @@ class Carousel extends Component {
 
     render(){
         return(
-            <section className="carousel">
-                <div className="carousel__container">
-                    {this.state.data.results.map( movie =>{
-                        return <CarouselItem 
-                        key={movie.id}
-                        title={movie.title} 
-                        description={movie.overview}
-                        poster={movie.poster_path} />
-                    })}
-                </div>
-            </section >    
+            <>
+                {this.state.loading && <p className="center">Loading...</p>}
+                {this.state.error && <p className="center">Error: {this.state.errorMessage}</p>}
+                <section className="carousel">
+                    <div className="carousel__container">
+                        {this.state.data.results.map( movie =>{
+                            return <CarouselItem 
+                            key={movie.id}
+                            title={movie.title || movie.name} 
+                            description={movie.overview}
+                            poster={movie.poster_path} />
+                        })}
+                    </div>
+                </section >    
+            </>
         )
     }
 }

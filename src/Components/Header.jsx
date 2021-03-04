@@ -4,8 +4,8 @@ import React from "react";
 //import Logo from '../assets/images/logo.png'
 import Users from '../assets/images/icons/user-icon.png'
 import '../assets/styles/components/Header.css'
-
-function Header(){
+import Search from "./Search";
+function Header(props){
   
   return (
     <header className="header">
@@ -14,6 +14,10 @@ function Header(){
         src=""
         alt="Logo Matflix"
       />
+      <Search send={props.sendInfo}
+      onChange= {props.onChange}
+      search={props.search}
+       />
       <div className="menu">
         <div className="profile-conteiner">
           <img src={Users} id="avatar" alt="ImagenProfile" />

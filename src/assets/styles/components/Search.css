@@ -1,17 +1,13 @@
 
 .search_section {
-height: 200px;
-text-align: center;
-align-items: center;
+height: 100%;
+width:80%;
 }
-.search__title{
-font-size: 30px;
-color: #fbfbfb;
-padding-top: 50px;
-padding-bottom: 25px;
-}
+
 .searcher {
-width: 70%;
+align-items: left;
+margin-top: 2.5%;
+width: 90%;
 height: 40px;
 border: 1px solid #db7093;
 border-radius: 10px;

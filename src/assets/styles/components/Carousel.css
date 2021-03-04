@@ -9,17 +9,18 @@ position: relative;
 margin-bottom: 20px;
 }
 .carousel__container {
-
-margin: 20px 0px;
+width: 100%;
+margin: 20px 25PX;
 padding-bottom: 10px;
 }
 
 .carousel__container:hover .carousel-items {
-opacity: 0.3;
+opacity: 0.5;
 }
 
-.carousel__container:hover .carousel-items:hover {
+.carousel__container:hover .carousel-items:hover{
 -webkit-transform: scale(1.1);
         transform: scale(1.1);
-opacity: 1;
-}
+        opacity: 1;
+        z-index: 1;
+} 

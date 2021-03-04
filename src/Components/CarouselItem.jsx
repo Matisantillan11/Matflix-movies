@@ -14,7 +14,7 @@ const CarouselItem = ({ poster, title, duration, time }) => (
                 <img src={Add} alt="Agregar" />
             </div>
             <p className="carousel-item__description--title">{title}</p>
-            <p className="carousel-item__description--subtitle">{duration} {time}</p>
+            {/* <p className="carousel-item__description--subtitle">{duration} {time}</p> */}
         </div>
     </div>
 )

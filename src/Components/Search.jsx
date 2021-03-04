@@ -1,13 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import '../assets/styles/components/Search.css'
-function Search() {
-    return(
-        <section className="search_section">
-        <h2 className="search__title">¿Qué quieres ver hoy?</h2>
-        <input className="searcher" type="text" placeholder="Buscar..." />
-        </section>
-    )
+class Search extends Component{
+    render(){
+
+        return(
+            <div className="search_section">
+            <form onSubmit={this.props.send}>
+                <input
+                onChange={this.props.onChange} 
+                value={this.props.search} 
+                className="searcher" 
+                type="text" 
+                placeholder="Buscar..." />
+            </form>
+            </div>
+        )
+    }
 }
 
 export default Search
