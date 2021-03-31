@@ -10,9 +10,9 @@ class SearchMoviePage extends Component{
   }
   
   componentDidMount(){
-    let searcher = this.props.history.location.search.substr(1).replace("%20", " ");
+   /*  let searcher = this.props.history.location.search.substr(1).replace("%20", " ");
     console.log(searcher)
-    this.setState({search: searcher})
+    this.setState({search: searcher}) */
   }
     /* fetchDetails = async () =>{
       this.setState({loading: true})

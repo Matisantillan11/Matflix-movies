@@ -8,8 +8,8 @@ const App =  () => {
     return(
         <BrowserRouter>
             <Switch>
-                <Route exacth path="/search" component={SearchMoviePage}/>
-                <Route exact path="/movie" component={MovieDetailsPage}/>
+                <Route exact path="/search" component={SearchMoviePage}/>
+                <Route exact path="/movies" component={MovieDetailsPage}/>
                 <Route path="/" component={HomePage}/>
             </Switch>
         

@@ -50,12 +50,14 @@ class Carousel extends Component {
                 {this.state.error && <p className="center">Error: {this.state.errorMessage}</p>}
                 <section className="carousel">
                     <div className="carousel__container">
-                        {this.state.data.results.map( movie =>{
+                        {this.state.data.results.map( (movie, i) =>{
                             return <CarouselItem 
-                            key={movie.id}
+                            key={i}
+                            id={movie.id}
                             title={movie.title || movie.name} 
                             description={movie.overview}
-                            poster={movie.poster_path} />
+                            poster={movie.poster_path}
+                            infoMovie = {this.props.onClick} />
                         })}
                     </div>
                 </section >    
