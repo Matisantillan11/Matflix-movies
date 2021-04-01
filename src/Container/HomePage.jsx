@@ -18,7 +18,6 @@ class HomePage extends Component {
   };
 
   handleClick = (id) =>{
-    
     this.props.history.push(`/movies?${id}`)
   }
   

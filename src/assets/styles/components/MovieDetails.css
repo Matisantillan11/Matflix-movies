@@ -1,0 +1,136 @@
+
+.movieDetails_Container{
+    width: 80vw;
+    min-height: 60vh;
+    display:flex;
+    flex-direction: row;
+    margin: 5% auto 2.5% auto ;
+}
+
+.movieDetails_imageContainer{
+    width: 30%;
+    
+    
+}
+
+.movieDetails_image{
+    width: 80%;
+    height: 70%;
+    margin: 2% 10%;
+}
+
+.addto_container{
+    width: 80%;
+    margin:0 11%;
+}
+
+.addto_container select{
+    width: 100%;
+    height: 50px;
+}
+
+.movieDetails_descriptionContainer{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.movieDetails_title{
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.movieDetails_realTitle{
+    font-weight: 400;
+    font-size: 18px;
+    color: #a8a2a2;
+}
+
+.movieDetails_bonusContainer{
+    display: flex;
+    align-items: center;
+    margin: 2.5% 0;
+}
+.rateMovie_container{
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin:0 2.5%;
+    border-right: 1px solid #db70947a;
+}
+.rateMovie_rater span{
+    position: absolute;
+    width: 80%;
+    font-size: 12px;
+    font-weight: 400;
+    display:block;
+    text-align: center;
+    white-space: nowrap;
+    color:#db7093;
+    margin: 30% 10%;
+}
+
+.rateMovie_rater{
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border:2px solid #db7093;
+    border-radius: 50%;
+    margin-right: 10.5%;
+}
+
+.rateStars_container,
+.rate_information {
+    height: 40%;
+    white-space: nowrap;
+}
+.rateStars_container{
+    margin-bottom: -5%;
+}
+
+.rate_information{
+    margin-top: -5%;
+    margin-left: -15%;
+}
+
+
+.rate_information p{ 
+    font-size: 10px;
+}
+
+.movie_timeDetails{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.movie_timeDetails p{
+    color: #a8a2a2;
+    font-size: 15px;
+}
+
+.movieDetails_description{
+    font-size: 18px;
+    font-weight: 200;
+    color: #a8a2a2;
+}
+
+.movieDetails_genres{
+    display:flex;
+    flex-direction: row;
+    
+}
+
+.movieDetails_genres{
+    padding-top: 2%;
+    margin-left: 2%;
+    color: #a8a2a2;
+}
+
+.movieDetails_genres p{
+    margin-top: -1.2%;
+    font-size: 15px;
+    color: #db7093;
+}

@@ -9,13 +9,13 @@ class Carousel extends Component {
         API_KEY: '76ea301b5b0a49273c1693f3ec685b25',
         data: {
             results: [{}]
-        }
+        },
     }
 
     
 
     componentDidMount(){
-        this.fetchData(`https://api.themoviedb.org/3/${this.props.type}/popular?api_key=${this.state.API_KEY}&language=en-US&page=1`)
+        this.fetchData(`https://api.themoviedb.org/3/${this.props.type}/popular?api_key=${this.state.API_KEY}&language=en-US&page=${this.state.page}`)
     }
 
     fetchData = async (url) => {
@@ -50,14 +50,15 @@ class Carousel extends Component {
                 {this.state.error && <p className="center">Error: {this.state.errorMessage}</p>}
                 <section className="carousel">
                     <div className="carousel__container">
-                        {this.state.data.results.map( (movie, i) =>{
+                        {this.state.data.results.slice(0, this.props.slice ? this.props.slice : 10).map( (movie, i) =>{
                             return <CarouselItem 
                             key={i}
                             id={movie.id}
                             title={movie.title || movie.name} 
                             description={movie.overview}
                             poster={movie.poster_path}
-                            infoMovie = {this.props.onClick} />
+                            infoMovie = {this.props.onClick}
+                            />
                         })}
                     </div>
                 </section >    

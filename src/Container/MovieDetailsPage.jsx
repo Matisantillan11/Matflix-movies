@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 
-import '../assets/styles/containers/MovieDetailsPage.css'
+import Header from '../Components/Header'
+import MovieDetails from '../Components/MovieDetails'
+import SimilarMovie from '../Components/SimilarMovies'
+
 class MovieDetailsPage extends Component{
 
     state={}
@@ -18,8 +21,8 @@ class MovieDetailsPage extends Component{
             popularity: '',
             release_date: '',
             runtime: '',
-            vote_average: ''
-
+            vote_average: '',
+            vote_count: ''
         }
     }
 
@@ -51,39 +54,29 @@ class MovieDetailsPage extends Component{
         }
     }
 
-    toHour = (minutes) => {
-        let hour, minute;
-
-        if ( minutes < 60 ){
-            return <p>{minute}min</p>
-        } else {
-            hour = Math.floor(minutes / 60).toFixed() 
-            minute = minutes % 60
-            return <p>{hour}h {minute}min</p>
-        }
-    }
+    handleClick = (id) =>{
+        this.props.history.push(`/movies?${id}`)
+        window.location.replace('')
+      }
 
     render(){
         return(
-            <div className="movieDetails_Container">
-                <div className="movieDetails_imageContainer">
-                    <img className="movieDetails_image"src={`https://image.tmdb.org/t/p/w500${this.state.data.poster_path}`} alt=""/>
-                </div>
-                <div className="movieDetails_descriptionContainer">
-                    <p className="movieDetails_title">{this.state.data.title}</p>
-                    <p className="movieDetails_realTitle">{this.state.data.original_title}</p>
-                    <div className="rateMovie_container">
-                        <span className="rateMovie_rater">{(Math.round(this.state.data.popularity)/100).toFixed(1)}%</span>
-                        {this.toHour(this.state.data.runtime)}
-                        <p>{this.state.data.release_date.substr(0,4)}</p>
-                    </div>
-                    <div>
-                        <p className="movieDetails_description">{this.state.data.overview}</p>
-                        <span className="movieDetails_genres">Generos: 
-                        {this.state.data.genres.map((genre, i) =><p key={genre.i}>{genre.name }, </p>)} </span >
-                    </div>
-                </div>
-            </div>
+           <>
+           <Header />
+           <MovieDetails
+            poster={this.state.data.poster_path}
+            title={this.state.data.title}
+            originalTitle={this.state.data.original_title}
+            genres= {this.state.data.genres}
+            overview={this.state.data.overview}
+            popularity={this.state.data.popularity}
+            releaseDate={this.state.data.release_date}
+            runtime={this.state.data.runtime}
+            voteAverage= {this.state.data.vote_average}
+            voteCount={this.state.data.vote_count}
+           />
+           <SimilarMovie MovieID={this.state.movieId} onClick={this.handleClick}/>
+           </>
         )
     }
 }

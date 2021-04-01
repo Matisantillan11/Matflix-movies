@@ -17,8 +17,7 @@ class CarouselItem extends Component{
                     <div>
                         <img src={Play} alt="Reproducir" onClick = {()=>this.props.infoMovie( this.props.id)}/>
                         <img src={Add} alt="Agregar" />
-                    </div>
-                    <h1>{this.props.id}</h1>   
+                    </div>  
                     <p className="carousel-item__description--title">{this.props.title}</p>
                     {/* <p className="carousel-item__description--subtitle">{duration} {time}</p> */}
                 </div>
