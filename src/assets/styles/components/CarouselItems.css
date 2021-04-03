@@ -12,7 +12,7 @@
     -webkit-transform-origin: center left;
     transform-origin: center left;
     position: relative;
-    
+
   }
   .carousel-item:hover ~ .carousel-items {
     -webkit-transform: translate3d(90px, 0, 0);

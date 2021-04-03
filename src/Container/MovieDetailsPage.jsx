@@ -12,31 +12,42 @@ class MovieDetailsPage extends Component{
         error:false,
         movieId: '',
         API_KEY: '76ea301b5b0a49273c1693f3ec685b25',
-        data: {          
-            poster_path:'',
-            genres:[{}],
-            original_title:'',
-            title: '',
-            overview: '',
-            popularity: '',
-            release_date: '',
-            runtime: '',
-            vote_average: '',
-            vote_count: ''
-        }
+        data: { 
+                poster_path:'',
+                genres:[{}],
+                original_title:'',
+                title: '',
+                overview: '',
+                popularity: '',
+                release_date: '',
+                runtime: '',
+                vote_average: '',
+                vote_count: ''
+            
+        },
+        similars:{
+            results:[{}]
+        }        
     }
 
     componentDidMount(){
         const movieId = this.props.history.location.search.substr(1)
         this.setState({movieId})
         this.fetchData(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${this.state.API_KEY}&language=es`)
+        this.fetchDataSimilar(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${this.state.API_KEY}&language=es`)
     }
 
-    fetchData = async url =>{
+    /* componentDidUpdate(prevProps){
+        if(this.props.location !== prevProps.location){
+            this.fetchData()
+            this.fetchDataSimilar()
+        }
+    } */
+    fetchData = async (url) =>{
         this.setState({loading: true})
         const response = await fetch(url)
         const data = await response.json()
-        console.log(data)
+        
         if(data === null){
             this.setState({
                 loading: false,
@@ -51,6 +62,30 @@ class MovieDetailsPage extends Component{
                 loading: false,
                 data: data
             })
+        }
+    }
+
+    fetchDataSimilar = async (url) => {
+        this.setState({loading: true})
+        const response = await fetch(url)
+        const data = await response.json()
+        console.log(data)
+        if (data.similars === ''){
+            this.setState(
+                {
+                    loading: false,
+                    error: true,
+                    errorMessage: 'Movies not found'
+                }
+            )
+        }else{
+            this.setState(
+                {
+                error: false,
+                loading: false,
+                similars: data
+                }
+            )
         }
     }
 
@@ -75,7 +110,9 @@ class MovieDetailsPage extends Component{
             voteAverage= {this.state.data.vote_average}
             voteCount={this.state.data.vote_count}
            />
-           <SimilarMovie MovieID={this.state.movieId} onClick={this.handleClick}/>
+           
+            <SimilarMovie data= {this.state.similars.results} MovieID={this.state.movieId} onClick={this.handleClick}/>
+           
            </>
         )
     }

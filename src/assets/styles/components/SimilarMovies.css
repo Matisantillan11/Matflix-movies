@@ -1,8 +1,18 @@
 .similarMovies_container{
     width: 80%;
-    margin: -5% auto 2.5% auto;
+    margin: auto;
 }
 
+.similarMovies_container div{
+    padding: 0 0 0 4%;
+    
+}
+
+.similarMovies_container:hover .carousel-items:hover{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    opacity: 1;
+    z-index: 1;}
 .similarMovies_container h1{
     text-align: center;
     font-size: 25px;
