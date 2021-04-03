@@ -1,28 +1,30 @@
 import React, { Component } from 'react'
 
 import Header from '../Components/Header'
-import MovieDetails from '../Components/MovieDetails'
-import SimilarMovie from '../Components/SimilarMovies'
+import SerieDetails from '../Components/SerieDetails'
+import SimilarSerie from '../Components/SimilarSerie'
 
 class MovieDetailsPage extends Component{
 
-    state={}
     state = {
         loading: false,
         error:false,
-        movieId: '',
+        serieId: '',
         API_KEY: '76ea301b5b0a49273c1693f3ec685b25',
         data: { 
                 poster_path:'',
                 genres:[{}],
-                original_title:'',
-                title: '',
+                original_name:'',
+                name: '',
                 overview: '',
                 popularity: '',
-                release_date: '',
+                first_air_date: '',
                 runtime: '',
                 vote_average: '',
-                vote_count: ''
+                vote_count: '',
+                number_of_episodes:'',
+                number_of_seasons:'',
+                tagline:''
             
         },
         similars:{
@@ -31,18 +33,13 @@ class MovieDetailsPage extends Component{
     }
 
     componentDidMount(){
-        const movieId = this.props.history.location.search.substr(1)
-        this.setState({movieId})
-        this.fetchData(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${this.state.API_KEY}&language=es`)
-        this.fetchDataSimilar(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${this.state.API_KEY}&language=es`)
+        const serieId = this.props.history.location.search.substr(1)
+        console.log(serieId)
+        this.setState({serieId})
+        this.fetchData(`https://api.themoviedb.org/3/tv/${serieId}?api_key=${this.state.API_KEY}&language=es`)
+        this.fetchDataSimilar(`https://api.themoviedb.org/3/tv/${serieId}/similar?api_key=${this.state.API_KEY}&language=es`)
     }
 
-    /* componentDidUpdate(prevProps){
-        if(this.props.location !== prevProps.location){
-            this.fetchData()
-            this.fetchDataSimilar()
-        }
-    } */
     fetchData = async (url) =>{
         this.setState({loading: true})
         const response = await fetch(url)
@@ -52,7 +49,7 @@ class MovieDetailsPage extends Component{
             this.setState({
                 loading: false,
                 error: true,
-                errorMessage : 'Movie not found'
+                errorMessage : 'Serie not found'
             })
         }
         else{
@@ -75,7 +72,7 @@ class MovieDetailsPage extends Component{
                 {
                     loading: false,
                     error: true,
-                    errorMessage: 'Movies not found'
+                    errorMessage: 'Serie not found'
                 }
             )
         }else{
@@ -90,7 +87,7 @@ class MovieDetailsPage extends Component{
     }
 
     handleClick = (id) =>{
-        this.props.history.push(`/MovieDetails?${id}`)
+        this.props.history.push(`/SerieDetails?${id}`)
         window.location.replace('')
       }
 
@@ -98,20 +95,22 @@ class MovieDetailsPage extends Component{
         return(
            <>
            <Header />
-           <MovieDetails
+            <SerieDetails
             poster={this.state.data.poster_path}
-            title={this.state.data.title}
-            originalTitle={this.state.data.original_title}
+            title={this.state.data.name}
+            originalTitle={this.state.data.original_name}
             genres= {this.state.data.genres}
             overview={this.state.data.overview}
             popularity={this.state.data.popularity}
-            releaseDate={this.state.data.release_date}
-            runtime={this.state.data.runtime}
+            releaseDate={this.state.data.first_air_date}
             voteAverage= {this.state.data.vote_average}
             voteCount={this.state.data.vote_count}
+            seasons={this.state.data.number_of_seasons}
+            episodes={this.state.data.number_of_episodes}
+            tagline={this.state.data.tagline}
            />
            
-            <SimilarMovie data= {this.state.similars.results} MovieID={this.state.movieId} onClick={this.handleClick}/>
+            <SimilarSerie data= {this.state.similars.results} MovieID={this.state.serieId} onClick={this.handleClick}/>
            
            </>
         )

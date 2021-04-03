@@ -1,11 +1,11 @@
 .similarMovies_container{
     width: 80%;
-    margin: auto;
+    margin: 2.5% auto;
 }
 
 .similarMovies_container div{
     padding: 0 0 0 4%;
-    
+    padding-bottom: 10px;
 }
 
 .similarMovies_container:hover .carousel-items:hover{

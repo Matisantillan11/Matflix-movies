@@ -117,20 +117,30 @@
     color: #a8a2a2;
 }
 
-.movieDetails_genres{
+.movieDetails_genres,
+.seasons_description,
+.episodes_description{
     display:flex;
     flex-direction: row;
-    
-}
-
-.movieDetails_genres{
     padding-top: 2%;
     margin-left: 2%;
-    color: #a8a2a2;
+    color: #db7093;
 }
 
 .movieDetails_genres p{
     margin-top: -1.2%;
     font-size: 15px;
-    color: #db7093;
+    color: #a8a2a2;
+}
+
+.seasonsYepisodes_container{
+    display:flex;
+    flex-direction: row;
+}
+
+.seasons_description p,
+.episodes_description p{
+    margin-top: -7%;
+    font-size: 15px;
+    color: #a8a2a2;
 }

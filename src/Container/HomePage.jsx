@@ -17,8 +17,11 @@ class HomePage extends Component {
     });
   };
 
-  handleClick = (id) =>{
-    this.props.history.push(`/movies?${id}`)
+  ToSeries = (id) =>{
+    this.props.history.push(`/SerieDetails?${id}`)
+  }
+  ToMovies = (id) =>{
+    this.props.history.push(`/MovieDetails?${id}`)
   }
   
 
@@ -30,10 +33,10 @@ class HomePage extends Component {
         onChange={this.handleSearch}/>
 
         <Categories title="Top Movies">
-          <Carousel type="movie" onClick = {this.handleClick} />
+          <Carousel type="movie" onClick = {this.ToMovies} />
         </Categories>
         <Categories title="Top Tv Shows">
-          <Carousel type="tv" onClick = {this.handleClick}/>
+          <Carousel type="tv" onClick = {this.ToSeries}/>
         </Categories>
         <Footer />
       </div>
