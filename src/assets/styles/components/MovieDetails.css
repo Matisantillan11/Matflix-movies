@@ -4,13 +4,11 @@
     min-height: 60vh;
     display:flex;
     flex-direction: row;
-    margin: 5% auto 2.5% auto ;
+    margin: 5% auto 0 auto ;
 }
 
 .movieDetails_imageContainer{
     width: 30%;
-    
-    
 }
 
 .movieDetails_image{

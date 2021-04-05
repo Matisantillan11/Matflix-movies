@@ -24,6 +24,10 @@ class HomePage extends Component {
     this.props.history.push(`/MovieDetails?${id}`)
   }
   
+ 
+  ToAll = (type) =>{
+   this.props.history.push(`/All/?${type}`)
+}
 
   render() {
     return (
@@ -33,10 +37,10 @@ class HomePage extends Component {
         onChange={this.handleSearch}/>
 
         <Categories title="Top Movies">
-          <Carousel type="movie" onClick = {this.ToMovies} />
+          <Carousel type="movie" onClick = {this.ToMovies} toAll = {this.ToAll}/>
         </Categories>
         <Categories title="Top Tv Shows">
-          <Carousel type="tv" onClick = {this.ToSeries}/>
+          <Carousel type="tv" onClick = {this.ToSeries} toAll = {this.ToAll}/>
         </Categories>
         <Footer />
       </div>

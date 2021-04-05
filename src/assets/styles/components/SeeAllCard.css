@@ -1,0 +1,26 @@
+.seeAll_card{
+    min-width: 240px;
+    min-height: 300px;
+    background-color: #e7dcdc1e;
+    overflow: hidden;
+    margin-right: 15px;
+    margin-top: 10px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    border-radius: 12px;
+}
+
+.seeAll_containerText {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background:transparent;
+    margin-top: 50%;
+}
+
+.seeAll_containerText p{
+    background:transparent;
+    color: #c93a6aee;
+}
+

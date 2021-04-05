@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 
-import '../assets/styles/components/Carousel.css'
 import CarouselItem from './CarouselItem'
+
+import '../assets/styles/components/Carousel.css'
+import '../assets/styles/components/SeeAllCard.css'
 class Carousel extends Component {
     state={
         loading: true,
@@ -42,6 +44,7 @@ class Carousel extends Component {
         }
     }
 
+    
 
     render(){
         return(
@@ -60,6 +63,12 @@ class Carousel extends Component {
                             infoMovie = {this.props.onClick}
                             />
                         })}
+                        <div className="seeAll_card" onClick={()=>this.props.toAll(this.props.type)}>
+                            <div className="seeAll_containerText">
+                                <p>All</p>
+                                <i/>
+                            </div>  
+                        </div>
                     </div>
                 </section >    
             </>
