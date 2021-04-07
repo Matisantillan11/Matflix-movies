@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../assets/styles/components/SearchMoviePage.css'
 import Header from '../Components/Header';
 import SearchingMovie from '../Components/SearchingMovie';
-import CarouselItem from '../Components/CarouselItem';
+
 class SearchMoviePage extends Component{
   state={
     search: "",

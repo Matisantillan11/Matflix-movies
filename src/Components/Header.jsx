@@ -1,12 +1,52 @@
-import React from "react";
-//import swal from 'sweetalert2'
-
+import React, { Component } from "react";
+import Search from "./Search";
+//firebase
+import firebase from "firebase/app";
+import 'firebase/auth'
+//sweetalert
+import swal from 'sweetalert2'
 //import Logo from '../assets/images/logo.png'
 import Users from '../assets/images/icons/user-icon.png'
 import '../assets/styles/components/Header.css'
-import Search from "./Search";
-function Header(props){
+class Header extends Component{
+
+  componentDidMount(){
+    
+      firebase.auth().onAuthStateChanged(user =>{
+        const avatar = document.getElementById('avatar')
+        if(user){
+          avatar.src = user.photoURL
+          avatar.onclick = this.LogOut
+        }else{
+          avatar.src = Users
+          avatar.onclick = this.loginWithGoogle
+          avatar.style = "border-radius: 15px"
+        }
+      })
+  }
+
+  LogOut(){
+    firebase.auth().signOut().then(() => {
+        const avatar = document.getElementById('avatar')
+        
+        avatar.src=Users
+        swal.fire({
+          icon: 'success',
+          text: 'Has cerrado sesión correctamente'
+        })
+      }).catch((error) => console.log(`Error ${error.code}: ${error.message}`));
+  };
   
+  loginWithGoogle(){
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then((user) => {
+          const avatar = document.getElementById('avatar')
+          
+          avatar.src=user.photoURL
+      }).catch((error) => console.log(error.message));
+  };
+
+  render(){
   return (
     <header className="header">
       <img
@@ -14,26 +54,18 @@ function Header(props){
         src=""
         alt="Logo Matflix"
       />
-      <Search send={props.sendInfo}
-      onChange= {props.onChange}
-      search={props.search}
+      <Search send={this.props.sendInfo}
+      onChange= {this.props.onChange}
+      search={this.props.search}
        />
       <div className="menu">
         <div className="profile-conteiner">
           <img src={Users} id="avatar" alt="ImagenProfile" />
-          <p>Perfil</p>
         </div>
-        <ul>
-          <li>
-            <a href="/">Cuenta</a>
-          </li>
-          <li>
-              <a id="button-sign">Ingresar</a>
-          </li>
-        </ul>
       </div>
     </header>
   )
+}
 };
 
 export default Header;
