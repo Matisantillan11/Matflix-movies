@@ -4,10 +4,13 @@ import Header from '../Components/Header'
 import MovieDetails from '../Components/MovieDetails'
 import SimilarMovie from '../Components/SimilarMovies'
 
+import firebase from 'firebase'
+import 'firebase/auth'
 class MovieDetailsPage extends Component{
 
-    state={}
+  
     state = {
+        user:{},
         loading: false,
         error:false,
         movieId: '',
@@ -31,6 +34,12 @@ class MovieDetailsPage extends Component{
     }
 
     componentDidMount(){
+        firebase.auth().onAuthStateChanged(user =>{
+            if(user){
+              this.setState({ user })
+            }
+          })
+
         const movieId = this.props.history.location.search.substr(1)
         this.setState({movieId})
         this.fetchData(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${this.state.API_KEY}&language=es`)
@@ -111,7 +120,10 @@ class MovieDetailsPage extends Component{
             voteCount={this.state.data.vote_count}
            />
            
-            <SimilarMovie data= {this.state.similars.results} MovieID={this.state.movieId} onClick={this.handleClick}/>
+            <SimilarMovie data= {this.state.similars.results}
+            MovieID={this.state.movieId}
+            userData={this.state.user}
+            onClick={this.handleClick}/>
            
            </>
         )

@@ -17,7 +17,10 @@ class SimilarMovie extends Component{
                         poster={similar.poster_path}
                         title={similar.title}
                         description={similar.overview}
-                        id={similar.id}/>
+                        id={similar.id}
+                        infoUser = {this.props.userData}
+                        />
+                        
                         ))}
                 </div>
             </div>

@@ -18,24 +18,43 @@ class CarouselItem extends Component{
     
     AddToFavorite = () =>{
         const db = firebase.firestore()
-        
-        db.collection("Favorites").doc(`"${this.props.infoUser.uid}"`).set({
-            movies:[{
-                movieId: this.props.id,
-                poster: this.props.poster,
-                title: this.props.title,
-            }]
+        const docRef = db.collection("Favorites").doc(`${this.props.infoUser.uid}`)
+        let data = {
+            movieId: this.props.id,
+            poster: this.props.poster,
+            title: this.props.title
+        } 
 
-        }).then(()=>{
-            Swal.fire({
-                icon: 'success',
-                text: 'Agregado a favoritos 💯'
-            })
-        }).catch(error =>{
-            Swal.fire({
-                icon:"error",
-                text: `Error: ${error.message}`
-            })
+        docRef.get().then(doc =>{
+            if(doc.exists){
+                docRef.update({
+                    movies: firebase.firestore.FieldValue.arrayUnion(data)
+                }).then(()=>{
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Favoritos actualizados 💯'
+                    })
+                }).catch(error =>{
+                    Swal.fire({
+                        icon:"error",
+                        text: `Error: ${error.message}`
+                    })
+                })
+            } else{
+                docRef.set( {
+                    movies: [data]
+                }).then(()=>{
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Agregado a favoritos 💯'
+                    })
+                }).catch(error =>{
+                    Swal.fire({
+                        icon:"error",
+                        text: `Error: ${error.message}`
+                    })
+                })
+            }
         })
     }
     
