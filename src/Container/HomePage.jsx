@@ -4,9 +4,19 @@ import Categories from "../Components/Categories";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 
-
+import firebase from 'firebase'
+import 'firebase/auth'
 class HomePage extends Component {
-  state = { search: "" };
+  state = { search: "", user:{} };
+
+  componentWillMount(){
+    firebase.auth().onAuthStateChanged(user =>{
+      if(user){
+        this.setState({ user })
+      }
+    })
+  }
+
   sendingInfo = (e) => {
     e.preventDefault()
     this.props.history.push(`/search?${this.state.search}`)
@@ -37,10 +47,10 @@ class HomePage extends Component {
         onChange={this.handleSearch}/>
 
         <Categories title="Top Movies">
-          <Carousel type="movie" onClick = {this.ToMovies} toAll = {this.ToAll}/>
+          <Carousel userInfo={this.state.user} type="movie" onClick = {this.ToMovies} toAll = {this.ToAll}/>
         </Categories>
         <Categories title="Top Tv Shows">
-          <Carousel type="tv" onClick = {this.ToSeries} toAll = {this.ToAll}/>
+          <Carousel userInfo={this.state.user} type="tv" onClick = {this.ToSeries} toAll = {this.ToAll}/>
         </Categories>
         <Footer />
       </div>

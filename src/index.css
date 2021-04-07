@@ -4,11 +4,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: #333;
-  color: #fbfbfb;
   font-family:  'Muli', sans-serif;
 }
 
+body{
+  background: #333;
+  color: #fbfbfb;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

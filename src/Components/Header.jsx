@@ -4,7 +4,7 @@ import Search from "./Search";
 import firebase from "firebase/app";
 import 'firebase/auth'
 //sweetalert
-import swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 //import Logo from '../assets/images/logo.png'
 import Users from '../assets/images/icons/user-icon.png'
 import '../assets/styles/components/Header.css'
@@ -20,7 +20,7 @@ class Header extends Component{
         }else{
           avatar.src = Users
           avatar.onclick = this.loginWithGoogle
-          avatar.style = "border-radius: 15px"
+          avatar.style = "border-radius: 25px"
         }
       })
   }
@@ -28,10 +28,9 @@ class Header extends Component{
   LogOut(){
     firebase.auth().signOut().then(() => {
         const avatar = document.getElementById('avatar')
-        
         avatar.src=Users
-        swal.fire({
-          icon: 'success',
+        Swal.fire({
+          icon:"success",
           text: 'Has cerrado sesión correctamente'
         })
       }).catch((error) => console.log(`Error ${error.code}: ${error.message}`));
@@ -39,10 +38,14 @@ class Header extends Component{
   
   loginWithGoogle(){
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then((user) => {
+    firebase.auth().signInWithPopup(provider).then((result) => {
           const avatar = document.getElementById('avatar')
-          
-          avatar.src=user.photoURL
+          avatar.src=result.user.photoURL
+          avatar.style = "border-radius: 25px"
+          Swal.fire({
+            icon: 'success',
+            text: `Bienvenido ${result.user.displayName} 😎 que disfrutes de todos nuestras peliculas`
+          })
       }).catch((error) => console.log(error.message));
   };
 

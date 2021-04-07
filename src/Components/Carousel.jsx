@@ -12,6 +12,7 @@ class Carousel extends Component {
         data: {
             results: [{}]
         },
+        userInfo: this.props.userInfo
     }
 
     
@@ -51,16 +52,18 @@ class Carousel extends Component {
             <>
                 {this.state.loading && <p className="center">Loading...</p>}
                 {this.state.error && <p className="center">Error: {this.state.errorMessage}</p>}
+                    {this.props.userInfo.displayName}
                 <section className="carousel">
                     <div className="carousel__container">
                         {this.state.data.results.slice(0, this.props.slice ? this.props.slice : 10).map( (movie, i) =>{
-                            return <CarouselItem 
+                            return <CarouselItem
                             key={i}
                             id={movie.id}
                             title={movie.title || movie.name} 
                             description={movie.overview}
                             poster={movie.poster_path}
                             infoMovie = {this.props.onClick}
+                            infoUser={this.props.userInfo} 
                             />
                         })}
                         <div className="seeAll_card" onClick={()=>this.props.toAll(this.props.type)}>
