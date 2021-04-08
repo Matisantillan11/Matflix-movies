@@ -2,6 +2,13 @@ import React,{ Component } from 'react'
 
 import RateStar from '../Components/RateStar'
 
+//firebase
+import firebase from "firebase/app";
+import 'firebase/firestore'
+
+//swal
+import Swal from 'sweetalert2'
+
 import '../assets/styles/components/MovieDetails.css'
 
 class MovieDetails extends Component{
@@ -18,6 +25,62 @@ class MovieDetails extends Component{
         }
     }
 
+    addToFavoriteMethod = () =>{
+        const db = firebase.firestore()
+        const docRef = db.collection("Favorites").doc(`${this.props.infoUser.uid}`)
+        let data = {
+            movieId: this.props.id,
+            poster: this.props.poster,
+            title: this.props.title
+        } 
+
+        docRef.get().then(doc =>{
+            if(doc.exists){
+                docRef.update({
+                    movies: firebase.firestore.FieldValue.arrayUnion(data)
+                }).then(()=>{
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Favoritos actualizados 💯'
+                    })
+                }).catch(error =>{
+                    Swal.fire({
+                        icon:"error",
+                        text: `Error: ${error.message}`
+                    })
+                })
+            } else{
+                docRef.set( {
+                    movies: [data]
+                }).then(()=>{
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Agregado a favoritos 💯'
+                    })
+                }).catch(error =>{
+                    Swal.fire({
+                        icon:"error",
+                        text: `Error: ${error.message}`
+                    })
+                })
+            }
+        })
+    }
+
+    addToFavoriteCombo = () =>{
+        const list = document.getElementById("add");
+        const selected = list.options[list.selectedIndex];
+        
+        if (selected.value === "Favoritos"){
+            this.addToFavoriteMethod()
+        } else {
+            Swal.fire({
+                icon:'error',
+                text: 'Por favor, seleccione una opción correcta ❌'
+            })
+        } 
+    }
+
     render(){
         return(
 
@@ -26,10 +89,9 @@ class MovieDetails extends Component{
                     <img className="movieDetails_image"src={`https://image.tmdb.org/t/p/w500${this.props.poster}`} alt=""/>
                 
                     <div className="addto_container">
-                        <select name="add" id="add">
-                            <option>Agregar a</option>
+                        <select onChange = {this.addToFavoriteCombo} name="add" id="add">
+                            <option disabled selected>Agregar a</option>
                             <option>Favoritos</option>
-                            <option>Ver más tarde</option>
                         </select>
                         
                     </div>

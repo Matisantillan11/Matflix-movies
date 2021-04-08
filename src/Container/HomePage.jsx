@@ -17,10 +17,11 @@ class HomePage extends Component {
     })
   }
 
-  sendingInfo = (e) => {
+  searchingMovie = (e) => {
     e.preventDefault()
     this.props.history.push(`/search?${this.state.search}`)
   };
+
   handleSearch = (e) => {
     this.setState({
       search: e.target.value,
@@ -42,7 +43,7 @@ class HomePage extends Component {
   render() {
     return (
       <div className="App">
-        <Header sendInfo={this.sendingInfo}
+        <Header sendInfo={this.searchingMovie}
         search={this.state.search}
         onChange={this.handleSearch}/>
 

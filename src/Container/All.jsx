@@ -10,7 +10,8 @@ class All extends Component{
         data: {
             results: []
         },
-        page: 1
+        page: 1,
+        search: ''
     }
 
     
@@ -18,6 +19,17 @@ class All extends Component{
     componentDidMount(){
         this.fetchData()
     }
+
+    searchingMovie = (e) => {
+        e.preventDefault()
+        this.props.history.push(`/search?${this.state.search}`)
+    };
+    
+    handleSearch = (e) => {
+        this.setState({
+            search: e.target.value,
+        });
+    };
 
     fetchData = async () => {
         this.setState({loading: true})
@@ -53,7 +65,9 @@ class All extends Component{
     render(){
         return(
             <div>
-                <Header />
+                <Header sendInfo={this.searchingMovie}
+                search={this.state.search}
+                onChange={this.handleSearch}/>
                 <div style={{
                     width: "80%",
                     margin: "5% auto",

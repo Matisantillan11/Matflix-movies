@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Carousel from './Carousel'
 import CarouselItem from './CarouselItem'
 
+import '../assets/styles/components/SearchMovie.css'
 class SearchingMovie extends Component{
     state={
         loading:true,
@@ -43,9 +44,18 @@ class SearchingMovie extends Component{
             <>
                 {this.state.loading && <p className="center">Loading...</p>}
                 {this.state.error && <p className="center">Error: {this.state.errorMessage}</p>}
-                <div>
+                <div className="search_page">
                     {this.state.data.results.map(movie =>(
-                        <CarouselItem key={movie.id} poster={movie.poster_path ||'/kqjL17yufvn9OVLyXYpvtyrFfak.jpg'} title={movie.title}/>
+                        
+                            <CarouselItem 
+                            key={movie.id} 
+                            poster={movie.poster_path ||'/kqjL17yufvn9OVLyXYpvtyrFfak.jpg'} 
+                            id={movie.id}
+                            title={movie.title || movie.name} 
+                            description={movie.overview}
+                            infoMovie = {this.props.onClick}
+                            infoUser={this.props.userInfo} />
+                        
                         ))}
                 </div>
             </>

@@ -29,7 +29,8 @@ class MovieDetailsPage extends Component{
         },
         similars:{
             results:[{}]
-        }        
+        },
+        search: ''    
     }
 
     componentDidMount(){
@@ -91,10 +92,23 @@ class MovieDetailsPage extends Component{
         window.location.replace('')
       }
 
+      searchingMovie = (e) => {
+        e.preventDefault()
+        this.props.history.push(`/search?${this.state.search}`)
+    };
+    
+    handleSearch = (e) => {
+        this.setState({
+            search: e.target.value,
+        });
+    };
+
     render(){
         return(
            <>
-           <Header />
+           <Header sendInfo={this.searchingMovie}
+                search={this.state.search}
+                onChange={this.handleSearch}/>
             <SerieDetails
             poster={this.state.data.poster_path}
             title={this.state.data.name}

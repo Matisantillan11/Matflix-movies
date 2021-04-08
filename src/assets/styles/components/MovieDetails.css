@@ -25,8 +25,22 @@
 .addto_container select{
     width: 100%;
     height: 50px;
+    background-color:transparent;
+    border: 1px solid #db70947a;
+    border-radius: 12px;
+    outline: none;
+    color: #db7093;
 }
 
+option {
+    border:1px solid #db7093;
+    background-color: #333
+}
+
+select option:hover{
+    background-color: #333;
+    color: #f3145e
+}
 .movieDetails_descriptionContainer{
     width: 70%;
     height: 100%;

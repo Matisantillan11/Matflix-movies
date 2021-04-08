@@ -16,6 +16,7 @@ class MovieDetailsPage extends Component{
         movieId: '',
         API_KEY: '76ea301b5b0a49273c1693f3ec685b25',
         data: { 
+                id:'',
                 poster_path:'',
                 genres:[{}],
                 original_title:'',
@@ -46,12 +47,17 @@ class MovieDetailsPage extends Component{
         this.fetchDataSimilar(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${this.state.API_KEY}&language=es`)
     }
 
-    /* componentDidUpdate(prevProps){
-        if(this.props.location !== prevProps.location){
-            this.fetchData()
-            this.fetchDataSimilar()
-        }
-    } */
+    searchingMovie = (e) => {
+        e.preventDefault()
+        this.props.history.push(`/search?${this.state.search}`)
+      };
+    
+      handleSearch = (e) => {
+        this.setState({
+          search: e.target.value,
+        });
+      };
+
     fetchData = async (url) =>{
         this.setState({loading: true})
         const response = await fetch(url)
@@ -106,8 +112,11 @@ class MovieDetailsPage extends Component{
     render(){
         return(
            <>
-           <Header />
+           <Header sendInfo={this.searchingMovie}
+            search={this.state.search}
+            onChange={this.handleSearch}/>
            <MovieDetails
+            id={this.state.data.id}
             poster={this.state.data.poster_path}
             title={this.state.data.title}
             originalTitle={this.state.data.original_title}
@@ -118,6 +127,7 @@ class MovieDetailsPage extends Component{
             runtime={this.state.data.runtime}
             voteAverage= {this.state.data.vote_average}
             voteCount={this.state.data.vote_count}
+            infoUser={this.state.user}
            />
            
             <SimilarMovie data= {this.state.similars.results}
