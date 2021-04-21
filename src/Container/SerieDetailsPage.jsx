@@ -30,7 +30,8 @@ class MovieDetailsPage extends Component{
         similars:{
             results:[{}]
         },
-        search: ''    
+        search: '',
+        user: undefined 
     }
 
     componentDidMount(){

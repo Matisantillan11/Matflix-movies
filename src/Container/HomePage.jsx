@@ -7,13 +7,13 @@ import Header from "../Components/Header";
 import firebase from 'firebase'
 import 'firebase/auth'
 class HomePage extends Component {
-  state = { search: "", user:{} };
+  state = { search: "", user: undefined};
 
   componentWillMount(){
     firebase.auth().onAuthStateChanged(user =>{
       if(user){
         this.setState({ user })
-      }
+      } 
     })
   }
 

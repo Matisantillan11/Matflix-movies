@@ -20,7 +20,6 @@ class SimilarMovie extends Component{
                         id={similar.id}
                         infoUser = {this.props.userData}
                         />
-                        
                         ))}
                 </div>
             </div>

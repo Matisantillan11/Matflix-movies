@@ -10,7 +10,7 @@ class MovieDetailsPage extends Component{
 
   
     state = {
-        user:{},
+        user: undefined,
         loading: false,
         error:false,
         movieId: '',

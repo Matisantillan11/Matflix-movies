@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from 'react-router-dom';
 import Search from "./Search";
 //firebase
 import firebase from "firebase/app";
@@ -14,12 +15,15 @@ class Header extends Component{
     
       firebase.auth().onAuthStateChanged(user =>{
         const avatar = document.getElementById('avatar')
+        const loginbutton = document.getElementById('login');
         if(user){
           avatar.src = user.photoURL
-          avatar.onclick = this.LogOut
+          loginbutton.innerText="Salir"
+          loginbutton.onclick = this.LogOut
         }else{
           avatar.src = Users
-          avatar.onclick = this.loginWithGoogle
+          loginbutton.innerText="Ingresar"
+          loginbutton.onclick = this.loginWithGoogle
           avatar.style = "border-radius: 25px"
         }
       })
@@ -27,19 +31,24 @@ class Header extends Component{
 
   LogOut(){
     firebase.auth().signOut().then(() => {
-        const avatar = document.getElementById('avatar')
+        const avatar = document.getElementById('avatar');
         avatar.src=Users
         Swal.fire({
           icon:"success",
           text: 'Has cerrado sesión correctamente'
+        }).then(result =>{
+          if(result.isConfirmed){
+            window.location.href = window.location.href
+          }
         })
+        
       }).catch((error) => console.log(`Error ${error.code}: ${error.message}`));
   };
   
   loginWithGoogle(){
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
-          const avatar = document.getElementById('avatar')
+          const avatar = document.getElementById('avatar');
           avatar.src=result.user.photoURL
           avatar.style = "border-radius: 25px"
           Swal.fire({
@@ -52,11 +61,9 @@ class Header extends Component{
   render(){
   return (
     <header className="header">
-      <img
+      <Link to="/"
         className="header_logo"
-        src=""
-        alt="Logo Matflix"
-      />
+      ></Link>
       <Search send={this.props.sendInfo}
       onChange= {this.props.onChange}
       search={this.props.search}
@@ -65,6 +72,10 @@ class Header extends Component{
         <div className="profile-conteiner">
           <img src={Users} id="avatar" alt="ImagenProfile" />
         </div>
+        <ul>
+          <li><a>Mis favoritos</a></li>
+          <li id="login">Ingresar</li>
+        </ul>
       </div>
     </header>
   )

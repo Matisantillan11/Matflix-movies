@@ -11,7 +11,7 @@ class SearchMoviePage extends Component{
     error:false,
     API_KEY:'76ea301b5b0a49273c1693f3ec685b25',
     search: "",
-    user:'',
+    user: undefined,
     data:{
         results:[]
     }

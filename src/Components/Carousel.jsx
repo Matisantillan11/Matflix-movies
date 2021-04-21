@@ -52,7 +52,6 @@ class Carousel extends Component {
             <>
                 {this.state.loading && <p className="center">Loading...</p>}
                 {this.state.error && <p className="center">Error: {this.state.errorMessage}</p>}
-                    {this.props.userInfo.displayName}
                 <section className="carousel">
                     <div className="carousel__container">
                         {this.state.data.results.slice(0, this.props.slice ? this.props.slice : 10).map( (movie, i) =>{

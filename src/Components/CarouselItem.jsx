@@ -18,44 +18,53 @@ class CarouselItem extends Component{
     
     AddToFavorite = () =>{
         const db = firebase.firestore()
-        const docRef = db.collection("Favorites").doc(`${this.props.infoUser.uid}`)
-        let data = {
-            movieId: this.props.id,
-            poster: this.props.poster,
-            title: this.props.title
-        } 
+        console.log(this.props.infoUser)
+        if(this.props.infoUser !== undefined){
+            const docRef = db.collection("Favorites").doc(`${this.props.infoUser.uid}`)
+            let data = {
+                movieId: this.props.id,
+                poster: this.props.poster,
+                title: this.props.title
+            } 
 
-        docRef.get().then(doc =>{
-            if(doc.exists){
-                docRef.update({
-                    movies: firebase.firestore.FieldValue.arrayUnion(data)
-                }).then(()=>{
-                    Swal.fire({
-                        icon: 'success',
-                        text: 'Favoritos actualizados 💯'
+            docRef.get().then(doc =>{
+                if(doc.exists){
+                    docRef.update({
+                        movies: firebase.firestore.FieldValue.arrayUnion(data)
+                    }).then(()=>{
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Favoritos actualizados 💯'
+                        })
+                    }).catch(error =>{
+                        Swal.fire({
+                            icon:"error",
+                            text: `Error: ${error.message}`
+                        })
                     })
-                }).catch(error =>{
-                    Swal.fire({
-                        icon:"error",
-                        text: `Error: ${error.message}`
+                } else{
+                    docRef.set( {
+                        movies: [data]
+                    }).then(()=>{
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Agregado a favoritos 💯'
+                        })
+                    }).catch(error =>{
+                        Swal.fire({
+                            icon:"error",
+                            text: `Error: ${error.message}`
+                        })
                     })
-                })
-            } else{
-                docRef.set( {
-                    movies: [data]
-                }).then(()=>{
-                    Swal.fire({
-                        icon: 'success',
-                        text: 'Agregado a favoritos 💯'
-                    })
-                }).catch(error =>{
-                    Swal.fire({
-                        icon:"error",
-                        text: `Error: ${error.message}`
-                    })
-                })
-            }
-        })
+                }
+            })
+        } else {
+            Swal.fire({
+                icon:"error",
+                text: `Por favor, ingrese sesión antes para agregar esta pelicula a tus favoritos!`
+            })
+        }
+        
     }
     
     render(){
